@@ -1,7 +1,8 @@
-# Hook
+# Hook (this is the mollusc)
 
 Headset hook monitor for pick-up and use.
 
+ROS package.
 
 ## TODO
 - custom message to publish on /hook
