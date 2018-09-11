@@ -7,7 +7,8 @@
 #    https://gpiozero.readthedocs.io/en/stable/recipes.html
 
 import rospy
-from std_msgs.msg import String
+
+from hook.msg import Handset
 
 from gpiozero import Button
 
@@ -25,18 +26,18 @@ def picked_up():
     global pub
     pub_str = "PICKED UP %s" % rospy.get_time()
     rospy.loginfo(pub_str)
-    pub.publish(pub_str)
+    pub.publish(Handset(stamp=rospy.Time.now(), picked_up=True))
 
 def hung_up():
     global pub
     pub_str = "HUNG UP %s" % rospy.get_time()
     rospy.loginfo(pub_str)
-    pub.publish(pub_str)
+    pub.publish(Handset(stamp=rospy.Time.now(), picked_up=False))
 
 def hook_monitor():
     # Set-up Publisher
     global pub
-    pub = rospy.Publisher('hook', String, queue_size=10)
+    pub = rospy.Publisher('hook', Handset, queue_size=10)
     rospy.init_node('hook_monitor', anonymous=True)
 
     # Set-up Button
