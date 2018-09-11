@@ -40,7 +40,7 @@ def hook_monitor():
     rospy.init_node('hook_monitor', anonymous=True)
 
     # Set-up Button
-    button = Button(7) # PIN 7 is GPIO4
+    button = Button(4) # PIN 7 is GPIO4, API uses GPIO_ pin numberings
     button.when_pressed = picked_up
     button.when_released = hung_up
 
